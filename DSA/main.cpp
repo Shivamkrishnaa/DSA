@@ -1,22 +1,36 @@
 //
 //  main.cpp
-//  DSA - POINTERS
+//  DSA - PRE ORDER TRAVERSAL
 //
 //  Created by shivam krishna on 05/03/22.
 //
-
 #include <iostream>
 using namespace std;
+struct node{
+    int data;
+    node* left;
+    node* right;
+};
+node* newNode(int data){
+    node* element = new struct node;
+    element->left = NULL;
+    element->right = NULL;
+    element->data = data;
+    return element;
+}
+void display(node * node){
+    if(node==NULL) return;
+    cout<<node->data<<endl;
+    display(node->left);
+    display(node->right);
+}
 int main() {
-    int x = 10;
-    int *p = &x;
-    int **q = &p;
-    cout<<" X "<<x<<endl;
-    cout<<" P "<<*p<<endl;
-    cout<<" Q "<<**q<<endl;
-    cout<<" Address of X "<<&x<<endl;
-    cout<<" Address of X from p "<<p<<endl;
-    cout<<" Address of X from q "<<*q<<endl;
-    cout<<" Address of P "<<&p<<endl;
-    cout<<" Address of P from Q "<<q<<endl;
+    node* root = newNode(1);
+    root->right = newNode(3);
+    root->left = newNode(2);
+    root->left->left = newNode(4);
+    root->left->right = newNode(5);
+    display(root);
+    // 1 2 4 5 3
+    return 0;
 }
