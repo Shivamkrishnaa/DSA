@@ -6,9 +6,28 @@
 //
 
 #include <iostream>
-
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
-    return 0;
+using namespace std;
+struct node {
+    int data;
+    node* left;
+    node* right;
+};
+node* newNode(int data){
+    node * element = new struct node;
+    element->data = data;
+    element->left = NULL;
+    element->right = NULL;
+    return element;
+}
+void display(node* root){
+    if(root == NULL) return;
+    display(root->left);
+    cout<<root->data<<endl;
+    display(root->right);
+}
+int main() {
+    node* root = newNode(1);
+    root->left = newNode(2);
+    root->right = newNode(3);
+    display(root);
 }
